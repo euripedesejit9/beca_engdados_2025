@@ -15,15 +15,10 @@ jobs:
     - name: install-databricks-cli
       uses: microsoft/install-databricks-cli@v1.0.0
 
-    - name: Setup Databricks CLI
-      run: |      
-        pip install databricks-cli
-        databricks configure --token
-      env:
-        DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-        DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
-
-    - name: Copy files to Databricks Shared
-      run: |
-        # Exemplo de script para copiar arquivos para Databricks
-        databricks fs cp --overwrite ./projeto /Workspace/Shared --recursive
+    - name: databricks-import-directory
+      uses: microsoft/databricks-import-directory@v1.0.0
+      with:
+        databricks-host: ${{ secrets.DATABRICKS_HOST }}
+        databricks-token: ${{ secrets.DATABRICKS_TOKEN }}
+        local-path: "./projeto"
+        remote-path: "/Workspace/Shared"
