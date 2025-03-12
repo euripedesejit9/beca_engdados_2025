@@ -1,0 +1,27 @@
+name: Databricks CICD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  copy-files:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Databricks CLI
+      run: |
+        pip install databricks-cli
+        databricks configure --token
+      env:
+        DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+        DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+
+    - name: Copy files to Databricks Shared
+      run: |
+        # Exemplo de script para copiar arquivos para Databricks
+        databricks fs cp --overwrite ./path/to/local/files /mnt/shared/path/ --recursive
