@@ -7,8 +7,7 @@ on:
 
 jobs:
   copy-files:
-    runs-on: ubuntu-latest
-    environment: PRD 
+    runs-on: ubuntu-latest 
 
     steps:
     - name: Checkout
@@ -18,10 +17,6 @@ jobs:
       run: |
         pip install databricks-cli
         databricks configure --token
-        echo "Host: $DATABRICKS_HOST"
-        echo "[DEFAULT]" > ~/.databrickscfg
-        echo "host = $DATABRICKS_HOST" >> ~/.databrickscfg
-        echo "token = $DATABRICKS_TOKEN" >> ~/.databrickscfg
       env:
         DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
         DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
