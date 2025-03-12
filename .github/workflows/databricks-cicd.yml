@@ -24,4 +24,4 @@ jobs:
     - name: Copy files to Databricks Shared
       run: |
         # Exemplo de script para copiar arquivos para Databricks
-        databricks fs cp --overwrite ./path/to/local/files /mnt/shared/path/ --recursive
+        databricks fs cp --overwrite ./projeto /Workspace/Shared --recursive
