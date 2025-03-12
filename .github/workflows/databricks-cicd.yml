@@ -1,5 +1,4 @@
 name: Databricks CICD
-
 on:
   push:
     branches:
@@ -13,8 +12,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: install-databricks-cli
+      uses: microsoft/install-databricks-cli@v1.0.0
+
     - name: Setup Databricks CLI
-      run: |
+      run: |      
         pip install databricks-cli
         databricks configure --token
       env:
