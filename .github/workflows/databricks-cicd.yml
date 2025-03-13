@@ -34,4 +34,4 @@ jobs:
 
       - name: Copy to Workspace
         run: |
-          databricks workspace import-dir --overwrite ./notebooks/ "/Workspace/Shared/notebooks/"
+          databricks workspace import-dir --overwrite ./projeto/ "/Workspace/Shared/notebooks/"
